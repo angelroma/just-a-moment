@@ -1,18 +1,48 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'space-between',
+    padding: 30,
+  },
+  taskContainer: {
+    justifyContent: 'space-between',
+    padding: 20,
+    margin: 10,
+    borderRadius: 10,
+    borderColor: 'red',
+    borderWidth: 1
+  },
+  taskText: {
+    fontSize: 30
+  }
+});
 
 export default class Task extends Component {
+
+  _onLongPressButton() {
+    alert('Connectate para jugar!')
+  }
+
+  _onPressButton() {
+    alert('You tapped the button!')
+  }
+
   render() {
     return (
-      <View
-        style={{
-          flexDirection: 'row',
-          height: 100,
-          padding: 20,
-        }}>
-        <View style={{backgroundColor: 'blue', flex: 0.3}} />
-        <View style={{backgroundColor: 'red', flex: 0.5}} />
-        <Text>Hello World!</Text>
+      <View style={styles.container}>
+        <TouchableHighlight style={styles.taskContainer} onPress={this._onPressButton} onLongPress={this._onLongPressButton} underlayColor="red">
+          <Text style={styles.taskText}>
+            Run
+          </Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight style={styles.taskContainer} onPress={this._onPressButton} onLongPress={this._onLongPressButton} underlayColor="red">
+          <Text style={styles.taskText}>
+            Mauro
+          </Text>
+        </TouchableHighlight>
       </View>
     );
   }
