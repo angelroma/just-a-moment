@@ -7,9 +7,8 @@ export default class Task extends Component {
     super(props);
     this.state = {
       text: 'Useless Placeholder',
-      modalVisible: false
+      modalVisible: false,
     };
-
   }
 
   _onLongPressButton() {
@@ -21,39 +20,51 @@ export default class Task extends Component {
   }
 
   setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
+    this.setState({modalVisible: visible});
   }
 
   render() {
-    const { modalVisible } = this.state;
-
+    const {modalVisible} = this.state;
 
     return (
       <View style={styles.container}>
         <Modal
-          animationType="slide"
+          animationType="fade"
           transparent={true}
-          visible={modalVisible}
+          visible={true}
           onRequestClose={() => {
             // Alert.alert("Modal has been closed.");
           }}
         >
           <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
+            <View style={styles.modelHeader}>
+              <Text>Hello World!</Text>
 
               <TouchableHighlight
-                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                style={{...styles.openButton, backgroundColor: '#2196F3'}}
                 onPress={() => {
                   this.setModalVisible(!modalVisible);
                 }}
               >
-                <Text style={styles.textStyle}>Hide Modal</Text>
+                <Text>Hide Modal</Text>
               </TouchableHighlight>
             </View>
+
+            <View>
+
+            </View>
+          </View>
+
+          <View style={styles.modalBottom}>
+            <TextInput
+              style={styles.modalInput}
+              autoFocus
+            />
+          </View>
+
+          <View>
           </View>
         </Modal>
-
 
         <TouchableHighlight style={styles.taskContainer} onPress={this._onPressButton}
                             onLongPress={this._onLongPressButton} underlayColor="red">
@@ -119,25 +130,24 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
   },
+
+  //MODAL
   centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
+    flex:1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
+  modelHeader: {
     padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5
+    backgroundColor: '#fff',
+  },
+  modalBottom: {
+  },
+  modalInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    backgroundColor: 'black',
+
   },
 });
