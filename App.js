@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
-import Task from './components/Task';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {StatusBar} from 'react-native';
+import HomeEntry from './Views/Home/HomeEntry';
 
 const Stack = createStackNavigator();
 
 export default class App extends Component {
   render() {
     return (
-        <NavigationContainer>{
-          <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Home" component={Task}/>
-          </Stack.Navigator>
-        }</NavigationContainer>
+      <NavigationContainer>{
+        <Stack.Navigator initialRouteName="Index" screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Home" component={HomeEntry}/>
+        </Stack.Navigator>
+      }</NavigationContainer>
     );
   }
 }

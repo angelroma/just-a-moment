@@ -1,18 +1,16 @@
 import React from 'react';
-import {Modal, StyleSheet, TextInput, View} from 'react-native';
-import UselessTextInput from './UselessTextInput';
+import {StyleSheet, TextInput, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function BottonInputModal() {
+export default function Footer() {
   const [value, onTextChange] = React.useState('');
-
 
   return (
     <View>
       <View>
         <TextInput
           style={styles.modalInput}
-          onChangeText={text => onChangeText(text)}
+          onChangeText={text => onTextChange(text)}
           value={value}
           placeholder={'What do you need to do?'}
           autoFocus
@@ -22,7 +20,6 @@ export default function BottonInputModal() {
         <Icon name="magic" size={30} color="#fff"/>
       </View>
     </View>
-
   );
 }
 
@@ -32,5 +29,9 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: 'lightblue',
+  },
+  modalFoot: {
+    padding: 15,
+    flexDirection: 'row-reverse',
   },
 });
