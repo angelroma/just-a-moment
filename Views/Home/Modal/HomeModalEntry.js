@@ -1,9 +1,9 @@
 import React from 'react';
 import {Modal, Text, TouchableHighlight, View, StyleSheet} from 'react-native';
-import Footer from './Footer';
-import Header from './Header,js';
+import HomeModalFooter from './HomeModalFooter';
+import Header from './HomeModalHeader,js';
 
-export default function ModalEntry() {
+export default function HomeModalEntry() {
 
   return (
     <Modal
@@ -16,7 +16,7 @@ export default function ModalEntry() {
     >
       <View style={styles.centeredView}>
         <Header/>
-        <Footer/>
+        <HomeModalFooter/>
       </View>
     </Modal>
   );

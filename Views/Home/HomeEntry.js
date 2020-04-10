@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Modal, View, Text, StyleSheet, TouchableHighlight, TouchableOpacity, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Footer from './Modal/Footer';
-import ModalEntry from './Modal/ModalEntry';
+import HomeModalFooter from './Modal/HomeModalFooter';
+import HomeModalEntry from './Modal/HomeModalEntry';
 
 export default class HomeEntry extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class HomeEntry extends Component {
     return (
       <View style={styles.container}>
 
-        <ModalEntry/>
+        <HomeModalEntry/>
 
 
 
