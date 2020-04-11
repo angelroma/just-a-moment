@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
-import {hideModal, showModal} from '../../../Store/actions/modal.action';
+import {hideModal } from '../../../Store/actions/modal.action';
 
 class Header extends Component {
   constructor(props) {
@@ -34,15 +34,12 @@ const styles = StyleSheet.create({
     flexDirection:'column',
     backgroundColor: 'white',
     borderWidth: 1,
-    borderColor: 'red',
+    borderColor: 'green',
   },
 });
 
-
-
 const mapDispatchToProps = {
-  showModal,
   hideModal
-}
+};
 
 export default connect(null, mapDispatchToProps)(Header);
