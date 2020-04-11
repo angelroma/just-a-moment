@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux';
+import {showModal} from '../../../Store/actions/modal.action';
 
-export default function CircleAdder() {
+class CircleAdder extends Component {
 
-  return (
-
-    <TouchableOpacity style={styles.floatingButton} onPress={() => {
-      this.setModalVisible(true);
-    }}>
-      <Icon name="plus" size={30} color="#fff"/>
-    </TouchableOpacity>
-  );
+  render() {
+    return (
+      <TouchableOpacity style={styles.floatingButton} onPress={() => {
+        this.props.showModal(true);
+      }}>
+        <Icon name="plus" size={30} color="#fff"/>
+      </TouchableOpacity>
+    );
+  }
 }
+
 const styles = StyleSheet.create({
 
   floatingButton: {
@@ -28,6 +32,15 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 100,
   },
-
-
 });
+
+const mapStateToProps = state => {
+  const {modalReducer} = state;
+  return modalReducer;
+};
+
+const mapDispatchToProps = {
+  showModal,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CircleAdder);

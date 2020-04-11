@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'grey',
+    backgroundColor: 'black',
   },
 });
