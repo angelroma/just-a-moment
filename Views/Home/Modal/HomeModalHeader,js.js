@@ -1,32 +1,25 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+import {hideModal, showModal} from '../../../Store/actions/modal.action';
 
 class Header extends Component {
   constructor(props) {
     super(props);
   };
 
-  state = {
-    modalVisible: true,
-  };
-
   setModalVisible(visible) {
-    this.setState({
-      modalVisible: visible,
-    });
+    this.props.hideModal(visible)
   }
 
   render() {
     return (
       <View style={styles.modelHeader}>
-        <Text>Hello World!</Text>
 
         <TouchableHighlight
-          style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
+          style={{...styles.openButton, backgroundColor: '#2196F3'}}
           onPress={() => {
-            this.setModalVisible(!this.modalVisible);
+            this.setModalVisible(false);
           }}
         >
           <Text>Hide Modal</Text>
@@ -38,13 +31,18 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   modelHeader: {
-    padding: 35,
-    backgroundColor: '#fff',
-  }
+    flexDirection:'column',
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: 'red',
+  },
 });
 
-const mapStateToProps = state => {
-  console.log(state)
-  return state;
+
+
+const mapDispatchToProps = {
+  showModal,
+  hideModal
 }
-export default connect(mapStateToProps)(Header);
+
+export default connect(null, mapDispatchToProps)(Header);

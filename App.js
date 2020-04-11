@@ -3,10 +3,9 @@ import {createStore} from 'redux';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import rootReducer from './Store/reducers/index.reducer'
+import store from './Store/index.store';
 import HomeEntry from './Views/Home/HomeEntry';
 
-const store = createStore(rootReducer)
 const Stack = createStackNavigator();
 
 export default class App extends Component {
@@ -19,7 +18,6 @@ export default class App extends Component {
           </Stack.Navigator>
         }</NavigationContainer>
       </Provider>
-
     );
   }
 }

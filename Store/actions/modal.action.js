@@ -1,16 +1,16 @@
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
 
-function showModal(payload){
+export const showModal = (payload) => {
   return {
     type: SHOW_MODAL,
-    visible: payload.visible
-  }
-}
+    visible: payload.visible,
+  };
+};
 
-function hideModal(payload){
+export const hideModal = (payload) => {
   return {
     type: HIDE_MODAL,
-    visible: payload
-  }
-}
+    visible: payload,
+  };
+};
