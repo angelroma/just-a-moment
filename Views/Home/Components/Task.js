@@ -3,9 +3,17 @@ import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 
 export default function Task() {
 
+  const _onLongPressButton = () => {
+    alert('_onLongPressButton!');
+  };
+
+  const _onPressButton = () => {
+    alert('_onPressButton!');
+  };
+
   return (
-    <TouchableHighlight style={styles.taskContainer} onPress={this._onPressButton}
-                        onLongPress={this._onLongPressButton} underlayColor="red">
+    <TouchableHighlight style={styles.taskContainer} onPress={_onPressButton}
+                        onLongPress={_onLongPressButton} underlayColor="red">
       <Text style={styles.taskText}>
         Run
       </Text>

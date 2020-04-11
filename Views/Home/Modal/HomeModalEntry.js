@@ -1,7 +1,7 @@
 import React from 'react';
-import {Modal, Text, TouchableHighlight, View, StyleSheet} from 'react-native';
+import {Modal, View, StyleSheet, Alert} from 'react-native';
 import HomeModalFooter from './HomeModalFooter';
-import Header from './HomeModalHeader,js';
+import HomeModalHeader from './HomeModalHeader,js';
 
 export default function HomeModalEntry() {
 
@@ -15,12 +15,11 @@ export default function HomeModalEntry() {
       }}
     >
       <View style={styles.centeredView}>
-        <Header/>
+        <HomeModalHeader/>
         <HomeModalFooter/>
       </View>
     </Modal>
   );
-
 }
 
 const styles = StyleSheet.create({

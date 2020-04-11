@@ -1,9 +1,11 @@
-import React from 'react';
-import {StyleSheet, TextInput, View} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput, View , Text, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function HomeModalFooter() {
   const [value, onTextChange] = React.useState('');
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
 
   return (
     <View>
@@ -17,7 +19,9 @@ export default function HomeModalFooter() {
         />
       </View>
       <View style={styles.modalFoot}>
-        <Icon name="magic" size={30} color="#fff"/>
+        <Icon name="magic" size={30} color="#fff" />
+        <Text>You clicked {count} times</Text>
+        <Button title={"State use me"}  onPress={() => {setCount(count + 1); console.log(setCount)} }></Button>
       </View>
     </View>
   );
