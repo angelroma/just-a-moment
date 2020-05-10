@@ -1,24 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+import {connect} from 'react-redux'
 
-export default function Task() {
+class Task extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-  const _onLongPressButton = () => {
+  _onLongPressButton = () => {
     alert('_onLongPressButton!');
   };
 
-  const _onPressButton = () => {
+  _onPressButton = () => {
     alert('_onPressButton!');
   };
 
-  return (
-    <TouchableHighlight style={styles.taskContainer} onPress={_onPressButton}
-                        onLongPress={_onLongPressButton} underlayColor="red">
-      <Text style={styles.taskText}>
-        Run
-      </Text>
-    </TouchableHighlight>
-  );
+  render() {
+    return (
+      <TouchableHighlight style={styles.taskContainer} onPress={this._onPressButton}
+                          onLongPress={this._onLongPressButton} underlayColor="red">
+        <Text style={styles.taskText}>
+          {this.props.todo.text}
+        </Text>
+      </TouchableHighlight>
+
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -33,5 +40,14 @@ const styles = StyleSheet.create({
   },
   taskText: {
     fontSize: 30,
+    color:"#fff"
   },
 });
+
+const mapStateToProps = state => {
+  return state;
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Task);

@@ -4,7 +4,7 @@ import HomeModalFooter from './HomeModalFooter';
 import HomeModalHeader from './HomeModalHeader,js';
 import {connect} from 'react-redux';
 
-class HomeModalEntry extends Component {
+class HomeModalIndex extends Component {
   render() {
     const {visible} = this.props;
 
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = state => {
-  const {modalReducer} = state;
-  return modalReducer;
+  const {modal} = state;
+  return modal;
 };
 
-export default connect(mapStateToProps, null)(HomeModalEntry);
+export default connect(mapStateToProps, null)(HomeModalIndex);

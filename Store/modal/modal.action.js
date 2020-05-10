@@ -11,6 +11,6 @@ export const showModal = (payload) => {
 export const hideModal = (payload) => {
   return {
     type: HIDE_MODAL,
-    visible: payload,
+    visible: payload.visible,
   };
 };

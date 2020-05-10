@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import HomeModalEntry from './Modal/HomeModalEntry';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {View, StyleSheet} from 'react-native';
+import HomeModalIndex from './Components/Modal/HomeModalIndex';
 import CircleAdder from './Components/CircleAdder';
+import Task from './Components/Task';
+import TaskList from './Components/TaskList';
 
-export default class HomeEntry extends Component {
+class HomeIndex extends Component {
   constructor(props) {
     super(props);
   }
@@ -11,8 +14,11 @@ export default class HomeEntry extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <HomeModalEntry />
-        <CircleAdder />
+        <HomeModalIndex/>
+
+        <TaskList/>
+
+        <CircleAdder/>
       </View>
     );
   }
@@ -29,3 +35,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
 });
+
+export default HomeIndex;

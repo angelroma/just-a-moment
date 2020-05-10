@@ -1,7 +1,7 @@
-import {HIDE_MODAL, SHOW_MODAL} from '../actions/modal.action';
+import {HIDE_MODAL, SHOW_MODAL} from './modal.action';
 
 const initialState  = {
-  visible: true,
+  visible: false,
 }
 
 const modalReducer = (state = initialState, action) =>{
