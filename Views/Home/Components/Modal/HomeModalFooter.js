@@ -24,16 +24,17 @@ class HomeModalFooter extends Component {
   }
 
   onPress = () => {
+    //I want to add a new task if the input is not empty
     if (this.state.value !== null || this.state.value !== '') {
-      //Require last ID
+      //Require last ID from the current todos state
       let todos = this.props.todos;
+      //Finally require the last item
       const lastItem = todos[todos.length - 1];
+      //Increment the last id so we don't add duplicated key
       const incrementedId = lastItem.id + 1;
-
-      console.log(incrementedId);
-
-
+      //Add new item on to todos state
       this.props.addTodo({id: incrementedId, text: this.state.value});
+      //Finally close modal to return to taskList
       this.props.hideModal({visible: false});
     }
   };
