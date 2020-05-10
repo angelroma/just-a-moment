@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, TextInput, View, Text, TouchableWithoutFeedback } from 'react-native';
+import {StyleSheet, TextInput, View, Text, TouchableWithoutFeedback} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {addTodo} from '../../../../Store/task/task.actions';
+import {hideModal} from '../../../../Store/modal/modal.action';
 import {connect} from 'react-redux';
 
 const textColorOnGrey = '#b5b5b5';
@@ -12,7 +13,7 @@ class HomeModalFooter extends Component {
     super(props);
     this.state = {
       value: '',
-      textColorOnGrey: '#b5b5b5'
+      textColorOnGrey: '#b5b5b5',
     };
   }
 
@@ -23,9 +24,18 @@ class HomeModalFooter extends Component {
   }
 
   onPress = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
+    if (this.state.value !== null || this.state.value !== '') {
+      //Require last ID
+      let todos = this.props.todos;
+      const lastItem = todos[todos.length - 1];
+      const incrementedId = lastItem.id + 1;
+
+      console.log(incrementedId);
+
+
+      this.props.addTodo({id: incrementedId, text: this.state.value});
+      this.props.hideModal({visible: false});
+    }
   };
 
   render() {
@@ -48,9 +58,9 @@ class HomeModalFooter extends Component {
             <Icon name="slack" size={20} color={textColorOnGrey} style={styles.iconCustomStyle}/>
           </View>
 
-          <TouchableWithoutFeedback  style={styles.modalFooterRight} onPress={this.onPress}>
-            <Icon name="magic" size={20} color={this.state.value === "" ? textColorOnGrey: textColorOnWrote}/>
-          </TouchableWithoutFeedback >
+          <TouchableWithoutFeedback style={styles.modalFooterRight} onPress={this.onPress}>
+            <Icon name="magic" size={20} color={this.state.value === '' ? textColorOnGrey : textColorOnWrote}/>
+          </TouchableWithoutFeedback>
 
         </View>
       </View>
@@ -86,8 +96,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapDispatchToProps = {
-  addTodo,
+const mapStateToProps = state => {
+  return {todos: state.todos};
 };
 
-export default connect(null, mapDispatchToProps)(HomeModalFooter);
+const mapDispatchToProps = {
+  addTodo,
+  hideModal,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeModalFooter);

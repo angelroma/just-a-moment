@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Task from '../Components/Task';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 
 
 const TaskList = ({todos}) => (
@@ -14,7 +14,6 @@ const TaskList = ({todos}) => (
 );
 
 const mapStateToProps = state => {
-  console.log(state)
    return { todos: state.todos };
 };
 export default connect(mapStateToProps)(TaskList);
