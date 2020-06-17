@@ -1,4 +1,4 @@
-import {ADD_TODO} from './task.actions';
+import {ADD_TODO, COMPLETE_TODO} from './task.actions';
 
 const initialState = [
   {
@@ -22,6 +22,13 @@ const todosReducer = (state = initialState, action) => {
           id: action.id,
           text: action.text,
           completed: false
+        }
+      ]
+    case COMPLETE_TODO:
+      return [
+        ...state,
+        {
+          todos: true
         }
       ]
     default:
