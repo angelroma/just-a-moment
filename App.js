@@ -1,83 +1,114 @@
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { store } from './Store/index.store';
-import HomeIndex from './Views/Home/HomeIndex';
-import Icon from 'react-native-vector-icons/Feather';
-import { loadTodoFromDatabase } from './Store/task/task.actions'
-import AsyncStorage from '@react-native-community/async-storage';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
 
+import React from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+} from 'react-native';
 
-AsyncStorage.clear();
+import {
+  Header,
+  LearnMoreLinks,
+  Colors,
+  DebugInstructions,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 
-const storeData = async (value) => {
-  try {
-    const jsonValue = JSON.stringify(value)
-    await AsyncStorage.setItem('@data', jsonValue)
-  } catch (e) {
-    // saving error
-  }
-}
-const data = [
-  todos = [
-    {
-      id: 1,
-      text: "RUN",
-    },
-    {
-      id: 2,
-      text: "READ",
-    }
-  ]
-]
-
-storeData(data);
-
-const getAsyncStorage = () => {
-  return (dispatch) => {
-    AsyncStorage.getItem('@data')
-      .then((result) => {
-        console.log(result)
-        dispatch(loadTodoFromDatabase(result))
-      });
-  };
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <Header />
+          {global.HermesInternal == null ? null : (
+            <View style={styles.engine}>
+              <Text style={styles.footer}>Engine: Hermes</Text>
+            </View>
+          )}
+          <View style={styles.body}>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Step One</Text>
+              <Text style={styles.sectionDescription}>
+                Edit <Text style={styles.highlight}>App.js</Text> to change this
+                screen and then come back to see your edits.
+              </Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>See Your Changes</Text>
+              <Text style={styles.sectionDescription}>
+                <ReloadInstructions />
+              </Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Debug</Text>
+              <Text style={styles.sectionDescription}>
+                <DebugInstructions />
+              </Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Learn More</Text>
+              <Text style={styles.sectionDescription}>
+                Read the docs to discover what to do next:
+              </Text>
+            </View>
+            <LearnMoreLinks />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
 };
 
-store.dispatch(getAsyncStorage());
+const styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: Colors.lighter,
+  },
+  engine: {
+    position: 'absolute',
+    right: 0,
+  },
+  body: {
+    backgroundColor: Colors.white,
+  },
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: Colors.black,
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+    color: Colors.dark,
+  },
+  highlight: {
+    fontWeight: '700',
+  },
+  footer: {
+    color: Colors.dark,
+    fontSize: 12,
+    fontWeight: '600',
+    padding: 4,
+    paddingRight: 12,
+    textAlign: 'right',
+  },
+});
 
-
-
-const Stack = createStackNavigator();
-
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <NavigationContainer>{
-          <Stack.Navigator initialRouteName="Home" screenOptions={{
-            headerStyle: {
-              backgroundColor: 'black',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}>
-            <Stack.Screen name="Home"
-              component={HomeIndex}
-              options={{
-                headerLeft: () => (
-                  <Icon name="menu" size={30} color={"white"} />
-                ),
-              }}
-            />
-          </Stack.Navigator>
-        }</NavigationContainer>
-      </Provider>
-    );
-  }
-  componentDidMount() {
-
-  }
-}
+export default App;
