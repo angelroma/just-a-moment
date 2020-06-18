@@ -1,17 +1,6 @@
-import {ADD_TODO, COMPLETE_TODO} from './task.actions';
+import { ADD_TODO, COMPLETE_TODO, LOAD_TODO } from './task.actions';
 
-const initialState = [
-  {
-    id: 1,
-    text: "RUN",
-    completed: false
-  },
-  {
-    id: 2,
-    text: "READ",
-    completed: false
-  },
-];
+const initialState = [];
 
 const todosReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -30,6 +19,11 @@ const todosReducer = (state = initialState, action) => {
         {
           todos: true
         }
+      ]
+    case LOAD_TODO:
+      return [
+        ...state,
+        todos = action.data
       ]
     default:
       return state

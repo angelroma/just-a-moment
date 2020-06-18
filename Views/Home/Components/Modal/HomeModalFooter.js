@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {StyleSheet, TextInput, View, Text, TouchableWithoutFeedback} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, TextInput, View, Text, TouchableWithoutFeedback, InteractionManager } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {addTodo} from '../../../../Store/task/task.actions';
-import {hideModal} from '../../../../Store/modal/modal.action';
-import {connect} from 'react-redux';
+import { addTodo } from '../../../../Store/task/task.actions';
+import { hideModal } from '../../../../Store/modal/modal.action';
+import { connect } from 'react-redux';
 
 const textColorOnGrey = '#b5b5b5';
 const textColorOnWrote = '#00a8cc';
@@ -17,7 +17,37 @@ class HomeModalFooter extends Component {
     };
   }
 
+  render() {
+    return (
+      <View style={styles.modalFooter}>
+        <View>
+          <TextInput
+            autoFocus
+            style={styles.modalInput}
+            onChangeText={text => this.onTextChange(text)}
+            value={this.state.value}
+            placeholder={'What would you like to do?'}
+            placeholderTextColor={textColorOnGrey}
+          />
+        </View>
+        <View style={styles.modalFoot}>
+          <View style={styles.modalFooterLeft}>
+            <Icon name="calendar-check-o" size={20} color={textColorOnGrey} style={styles.iconCustomStyle} />
+            <Icon name="flag-o" size={20} color={textColorOnGrey} style={styles.iconCustomStyle} />
+            <Icon name="slack" size={20} color={textColorOnGrey} style={styles.iconCustomStyle} />
+          </View>
+
+          <TouchableWithoutFeedback style={styles.modalFooterRight} onPress={this.onPress}>
+            <Icon name="magic" size={20} color={this.state.value === '' ? textColorOnGrey : textColorOnWrote} />
+          </TouchableWithoutFeedback>
+
+        </View>
+      </View>
+    );
+  }
+
   onTextChange(value) {
+    console.log();
     this.setState({
       value: value,
     });
@@ -33,40 +63,12 @@ class HomeModalFooter extends Component {
       //Increment the last id so we don't add duplicated key
       const incrementedId = lastItem.id + 1;
       //Add new item on to todos state
-      this.props.addTodo({id: incrementedId, text: this.state.value});
+      this.props.addTodo({ id: incrementedId, text: this.state.value });
       //Finally close modal to return to taskList
-      this.props.hideModal({visible: false});
+      this.props.hideModal({ visible: false });
     }
   };
 
-  render() {
-    return (
-      <View style={styles.modalFooter}>
-        <View>
-          <TextInput
-            style={styles.modalInput}
-            onChangeText={text => this.onTextChange(text)}
-            value={this.state.value}
-            placeholder={'What would you like to do?'}
-            placeholderTextColor={textColorOnGrey}
-            autoFocus
-          />
-        </View>
-        <View style={styles.modalFoot}>
-          <View style={styles.modalFooterLeft}>
-            <Icon name="calendar-check-o" size={20} color={textColorOnGrey} style={styles.iconCustomStyle}/>
-            <Icon name="flag-o" size={20} color={textColorOnGrey} style={styles.iconCustomStyle}/>
-            <Icon name="slack" size={20} color={textColorOnGrey} style={styles.iconCustomStyle}/>
-          </View>
-
-          <TouchableWithoutFeedback style={styles.modalFooterRight} onPress={this.onPress}>
-            <Icon name="magic" size={20} color={this.state.value === '' ? textColorOnGrey : textColorOnWrote}/>
-          </TouchableWithoutFeedback>
-
-        </View>
-      </View>
-    );
-  }
 }
 
 const styles = StyleSheet.create({
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return {todos: state.todos};
+  return { todos: state.todos };
 };
 
 const mapDispatchToProps = {
